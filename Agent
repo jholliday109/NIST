@@ -1,1 +1,3 @@
 Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.12.0-1.msi -OutFile $env:tmp\wazuh-agent; msiexec.exe /i $env:tmp\wazuh-agent /q WAZUH_MANAGER='194.195.124.192' WAZUH_AGENT_NAME='NIST-win11' 
+
+NET START WazuhSvc
