@@ -1,1 +1,43 @@
-
+At C:\Users\NIST test\Documents\Test.ps1:130 char:10
++         } else {
++          ~
+The Try statement is missing its Catch or Finally block.
+At C:\Users\NIST test\Documents\Test.ps1:138 char:1
++ }
++ ~
+Unexpected token '}' in expression or statement.
+At C:\Users\NIST test\Documents\Test.ps1:238 char:8
++ [System Access]
++        ~
+Missing ] at end of attribute or type literal.
+At C:\Users\NIST test\Documents\Test.ps1:238 char:9
++ [System Access]
++         ~~~~~~~
+Unexpected token 'Access]' in expression or statement.
+At C:\Users\NIST test\Documents\Test.ps1:249 char:25
++ ... Write-Host "âœ“ 1.1.5 - Password complexity requirements enabled" -Fo ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Unexpected token 'âœ“ 1.1.5 - Password complexity requirements enabled"' in expression or statement.
+At C:\Users\NIST test\Documents\Test.ps1:722 char:2
++ }
++  ~
+The Try statement is missing its Catch or Finally block.
+At C:\Users\NIST test\Documents\Test.ps1:785 char:14
++             }
++              ~
+The Try statement is missing its Catch or Finally block.
+At C:\Users\NIST test\Documents\Test.ps1:819 char:10
++         }
++          ~
+The Try statement is missing its Catch or Finally block.
+At C:\Users\NIST test\Documents\Test.ps1:1028 char:37
++ ... pdate /force' to refresh Group Policy settings." -ForegroundColor Yel ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The string is missing the terminator: '.
+At C:\Users\NIST test\Documents\Test.ps1:827 char:13
++         try {
++             ~
+Missing closing '}' in statement block or type definition.
+Not all parse errors were reported.  Correct the reported errors and try again.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : MissingCatchOrFinally
