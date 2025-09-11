@@ -41,6 +41,7 @@
   - Fixed UAC restrictions registry path
   - Corrected SMB v1 configuration
   - Fixed PowerShell ExecutionPolicy compliance
+  - Fixed parsing errors and syntax issues
 #>
 
 [CmdletBinding(SupportsShouldProcess=$true)]
@@ -739,8 +740,7 @@ function Disable-UnnecessaryServices {
         @{ Name = 'simptcp'; Display = 'Simple TCP/IP Services' },
         @{ Name = 'sacsvr'; Display = 'Special Administration Console Helper' },
         @{ Name = 'fax'; Display = 'Fax' },
-        @{ Name = 'WerSvc'; Display = 'Windows Error Reporting Service' },
-        @{ Name = 'Spooler'; Display = 'Print Spooler' }  # Only if not using printers
+        @{ Name = 'WerSvc'; Display = 'Windows Error Reporting Service' }
     )
     
     foreach ($service in $servicesToDisable) {
@@ -822,15 +822,19 @@ function Set-CIS-AdditionalHardening {
     }
     
     # Disable NetBIOS over TCP/IP
-    $adapters = Get-WmiObject -Class Win32_NetworkAdapterConfiguration | Where-Object { $_.TcpipNetbiosOptions -ne $null }
-    foreach ($adapter in $adapters) {
-        try {
-            $adapter.SetTcpipNetbios(2) | Out-Null  # 2 = Disable NetBIOS over TCP/IP
-            Write-Host "✓ Additional - NetBIOS disabled on adapter: $($adapter.Description)" -ForegroundColor Green
-            $global:AppliedControls += "Additional-NetBIOS"
-        } catch {
-            Write-Verbose "NetBIOS configuration failed for $($adapter.Description): $($_.Exception.Message)"
+    try {
+        $adapters = Get-WmiObject -Class Win32_NetworkAdapterConfiguration | Where-Object { $_.TcpipNetbiosOptions -ne $null }
+        foreach ($adapter in $adapters) {
+            try {
+                $adapter.SetTcpipNetbios(2) | Out-Null  # 2 = Disable NetBIOS over TCP/IP
+                Write-Host "✓ Additional - NetBIOS disabled on adapter: $($adapter.Description)" -ForegroundColor Green
+                $global:AppliedControls += "Additional-NetBIOS"
+            } catch {
+                Write-Verbose "NetBIOS configuration failed for $($adapter.Description): $($_.Exception.Message)"
+            }
         }
+    } catch {
+        Write-Verbose "NetBIOS configuration failed: $($_.Exception.Message)"
     }
 }
 
