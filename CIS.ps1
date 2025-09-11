@@ -37,7 +37,7 @@
   - Added validation for critical operations
   - Fixed password complexity registry setting
   - Corrected audit policy implementation
-  - Fixed user rights assignment using ntrights.exe alternative
+  - Fixed syntax errors and try-catch blocks
 #>
 
 [CmdletBinding(SupportsShouldProcess=$true)]
